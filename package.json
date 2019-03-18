@@ -8,19 +8,25 @@
 	},
 	"dependencies": {
 		"express": "^4.12.4",
-		"body-parser": "^1.15.2"
+		"body-parser": "^1.15.2",
+		"mongodb": "^3.1.13",
+		"mongoose":"^5.4.19",
+		"dotenv": "^7.0.0"
 	},
 	"engines": {
 		"node": "4.4.5"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://hyperdev.com/#!/project/welcome-project"
+		"url": "https://github.com/TopGITsan/boilerplateMongoMongoose.git"
 	},
 	"keywords": [
 		"node",
 		"hyperdev",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"glitch": {
+		"url": "https://glitch.com/edit/#!/heartbreaking-airbus?path=myApp.js:1:0"
+	}
 }
