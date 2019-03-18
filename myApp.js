@@ -14,7 +14,11 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const envVar = dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+// check if connected to the db
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'this is the connection error: '));
+db.once('open', () => { console.log('connected to the mongoDB Atlas...') });
 
 /** # SCHEMAS and MODELS #
 /*  ====================== */
@@ -78,8 +82,8 @@ var Person /* = <Your Model> */
 //    ...do your stuff here...
 // });
 
-var createAndSavePerson = function(done) {
-  
+var createAndSavePerson = function (done) {
+
   done(null /*, data*/);
 
 };
@@ -93,10 +97,10 @@ var createAndSavePerson = function(done) {
 // Create many people using `Model.create()`, using the function argument
 // 'arrayOfPeople'.
 
-var createManyPeople = function(arrayOfPeople, done) {
-    
-    done(null/*, data*/);
-    
+var createManyPeople = function (arrayOfPeople, done) {
+
+  done(null/*, data*/);
+
 };
 
 /** # C[R]UD part II - READ #
@@ -110,8 +114,8 @@ var createManyPeople = function(arrayOfPeople, done) {
 // It supports an extremely wide range of search options. Check it in the docs.
 // Use the function argument `personName` as search key.
 
-var findPeopleByName = function(personName, done) {
-  
+var findPeopleByName = function (personName, done) {
+
   done(null/*, data*/);
 
 };
@@ -125,10 +129,10 @@ var findPeopleByName = function(personName, done) {
 // using `Model.findOne() -> Person`. Use the function
 // argument `food` as search key
 
-var findOneByFood = function(food, done) {
+var findOneByFood = function (food, done) {
 
   done(null/*, data*/);
-  
+
 };
 
 /** 7) Use `Model.findById()` */
@@ -140,10 +144,10 @@ var findOneByFood = function(food, done) {
 // using `Model.findById() -> Person`.
 // Use the function argument 'personId' as search key.
 
-var findPersonById = function(personId, done) {
-  
+var findPersonById = function (personId, done) {
+
   done(null/*, data*/);
-  
+
 };
 
 /** # CR[U]D part III - UPDATE # 
@@ -171,9 +175,9 @@ var findPersonById = function(personId, done) {
 // manually mark it as edited using `document.markModified('edited-field')`
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
-var findEditThenSave = function(personId, done) {
+var findEditThenSave = function (personId, done) {
   var foodToAdd = 'hamburger';
-  
+
   done(null/*, data*/);
 };
 
@@ -192,7 +196,7 @@ var findEditThenSave = function(personId, done) {
 // to `findOneAndUpdate()`. By default the method
 // passes the unmodified object to its callback.
 
-var findAndUpdate = function(personName, done) {
+var findAndUpdate = function (personName, done) {
   var ageToSet = 20;
 
   done(null/*, data*/);
@@ -208,10 +212,10 @@ var findAndUpdate = function(personName, done) {
 // previous update methods. They pass the removed document to the cb.
 // As usual, use the function argument `personId` as search key.
 
-var removeById = function(personId, done) {
-  
+var removeById = function (personId, done) {
+
   done(null/*, data*/);
-    
+
 };
 
 /** 11) Delete many People */
@@ -224,7 +228,7 @@ var removeById = function(personId, done) {
 // containing the outcome of the operation, and the number of items affected.
 // Don't forget to pass it to the `done()` callback, since we use it in tests.
 
-var removeManyPeople = function(done) {
+var removeManyPeople = function (done) {
   var nameToRemove = "Mary";
 
   done(null/*, data*/);
@@ -248,9 +252,9 @@ var removeManyPeople = function(done) {
 // Chain `.find()`, `.sort()`, `.limit()`, `.select()`, and then `.exec()`,
 // passing the `done(err, data)` callback to it.
 
-var queryChain = function(done) {
+var queryChain = function (done) {
   var foodToSearch = "burrito";
-  
+
   done(null/*, data*/);
 };
 
