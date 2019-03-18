@@ -93,8 +93,17 @@ var Person  = mongoose.model('Person', personSchema);
 // });
 
 var createAndSavePerson = function (done) {
+  const person = new Person({
+    _id: new mongoose.Types.ObjectId(),
+    badge: 15435,
+    name: 'Cris Dev',
+    age: 22,
+    favoriteFoods: ['pizza','ribs'],
+    living: true,
+    role: 'fullstack developer'
+  });
 
-  done(null /*, data*/);
+  person.save((err,data)=> err ? done(err): done(null, data));
 
 };
 
