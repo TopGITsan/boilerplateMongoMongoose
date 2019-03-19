@@ -55,7 +55,7 @@ const personSchema = Schema({
   role: {type: String, default: 'worker'}
 });
 
-var Person  = mongoose.model('Person', personSchema);
+const Person  = mongoose.model('Person', personSchema);
 
 // **Note**: GoMix is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
@@ -92,7 +92,7 @@ var Person  = mongoose.model('Person', personSchema);
 //    ...do your stuff here...
 // });
 
-var createAndSavePerson = function (done) {
+const createAndSavePerson = function (done) {
   const person = new Person({
     _id: new mongoose.Types.ObjectId(),
     badge: 15435,
@@ -115,10 +115,37 @@ var createAndSavePerson = function (done) {
 // as the 1st argument, and saves them all in the db.
 // Create many people using `Model.create()`, using the function argument
 // 'arrayOfPeople'.
-
-var createManyPeople = function (arrayOfPeople, done) {
-
-  done(null/*, data*/);
+const arr =[
+  {
+    _id: new mongoose.Types.ObjectId(),
+    badge: 54623,
+    name: 'Camper bot',
+    age: 4,
+    favoriteFoods: ['oil','vegetables'],
+    living: false,
+    role: 'working robot'
+  },
+  {
+    _id: new mongoose.Types.ObjectId(),
+    badge: 87423,
+    name: 'Camper noob',
+    age: 20,
+    favoriteFoods: ['sandwich','macaroni'],
+    living: true,
+    role: 'frontend developer'
+  },
+  {
+    _id: new mongoose.Types.ObjectId(),
+    badge: 94276,
+    name: 'Camper awesome',
+    age: 25,
+    favoriteFoods: ['chicken','onion'],
+    living: true,
+    role: 'fullstack developer'
+  }
+];
+const createManyPeople = function (arrayOfPeople, done) {
+  Person.create(arrayOfPeople,(err,data)=> err ? done(err): done(null,data));
 
 };
 
@@ -134,8 +161,7 @@ var createManyPeople = function (arrayOfPeople, done) {
 // Use the function argument `personName` as search key.
 
 var findPeopleByName = function (personName, done) {
-
-  done(null/*, data*/);
+  
 
 };
 
