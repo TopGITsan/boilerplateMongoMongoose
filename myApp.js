@@ -160,8 +160,8 @@ const createManyPeople = function (arrayOfPeople, done) {
 // It supports an extremely wide range of search options. Check it in the docs.
 // Use the function argument `personName` as search key.
 
-var findPeopleByName = function (personName, done) {
-  
+const findPeopleByName = function (personName, done) {
+  Person.find({'name':personName},(err,data)=> err? done(err): done(data));
 
 };
 
