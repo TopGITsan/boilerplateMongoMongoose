@@ -260,7 +260,7 @@ const findAndUpdate = function (personName, done) {
 // As usual, use the function argument `personId` as search key.
 
 const removeById = function (personId, done) {
-  Person.findByIdAndRemove(personId,(err,data)=> err ? done(err): done(null,data));
+  Person.findByIdAndRemove(personId, (err, data) => err ? done(err) : done(null, data));
 
 };
 
@@ -274,10 +274,9 @@ const removeById = function (personId, done) {
 // containing the outcome of the operation, and the number of items affected.
 // Don't forget to pass it to the `done()` callback, since we use it in tests.
 
-var removeManyPeople = function (done) {
-  var nameToRemove = "Mary";
-
-  done(null/*, data*/);
+const removeManyPeople = function (done) {
+  const nameToRemove = "Mary";
+  Person.remove({ 'name': nameToRemove }, (err, data) => err ? done(err) : done(null, data));
 };
 
 /** # C[R]UD part V -  More about Queries # 
