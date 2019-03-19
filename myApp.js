@@ -244,7 +244,9 @@ const findEditThenSave = function (personId, done) {
 // passes the unmodified object to its callback.
 
 const findAndUpdate = function (personName, done) {
-  
+  const ageToSet = 20;
+  Person.findOneAndUpdate({ 'name': personName }, { $set: { 'age': ageToSet } }, { new: true }, (err, data) => err ? done(err) : done(null, data));
+  // Person.findOneAndUpdate({ 'name': personName }, { 'age': ageToSet }, { new: true }, (err, data) => err ? done(err) : done(null, data));
 };
 
 /** # CRU[D] part IV - DELETE #
