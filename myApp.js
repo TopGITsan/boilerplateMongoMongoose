@@ -218,10 +218,14 @@ const findPersonById = function (personId, done) {
 // manually mark it as edited using `document.markModified('edited-field')`
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
-var findEditThenSave = function (personId, done) {
-  var foodToAdd = 'hamburger';
+const findEditThenSave = function (personId, done) {
+  const foodToAdd = 'hamburger';
+  Person.findById(personId, (err, data) => {
+    if (err) return done(err);
+    data['favoriteFoods'].push(foodToAdd);
+    data.save((err, data) => err ? done(err) : done(null, data));
+  });
 
-  done(null/*, data*/);
 };
 
 /** 9) New Update : Use `findOneAndUpdate()` */
@@ -239,10 +243,8 @@ var findEditThenSave = function (personId, done) {
 // to `findOneAndUpdate()`. By default the method
 // passes the unmodified object to its callback.
 
-var findAndUpdate = function (personName, done) {
-  var ageToSet = 20;
-
-  done(null/*, data*/);
+const findAndUpdate = function (personName, done) {
+  
 };
 
 /** # CRU[D] part IV - DELETE #
