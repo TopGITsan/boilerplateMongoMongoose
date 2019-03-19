@@ -47,15 +47,15 @@ db.once('open', () => { console.log('connected to the mongoDB Atlas...') });
 const Schema = mongoose.Schema;
 const personSchema = Schema({
   _id: Schema.Types.ObjectId,
-  badge: {type: Number, required: true, unique: true},
-  name: {type: String, required: true},
+  badge: { type: Number, required: true, unique: true },
+  name: { type: String, required: true },
   age: Number,
   favoriteFoods: [],
   living: Boolean,
-  role: {type: String, default: 'worker'}
+  role: { type: String, default: 'worker' }
 });
 
-const Person  = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 // **Note**: GoMix is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
@@ -98,12 +98,12 @@ const createAndSavePerson = function (done) {
     badge: 15435,
     name: 'Cris Dev',
     age: 22,
-    favoriteFoods: ['pizza','ribs'],
+    favoriteFoods: ['pizza', 'ribs'],
     living: true,
     role: 'fullstack developer'
   });
 
-  person.save((err,data)=> err ? done(err): done(null, data));
+  person.save((err, data) => err ? done(err) : done(null, data));
 
 };
 
@@ -115,13 +115,13 @@ const createAndSavePerson = function (done) {
 // as the 1st argument, and saves them all in the db.
 // Create many people using `Model.create()`, using the function argument
 // 'arrayOfPeople'.
-const arr =[
+const arr = [
   {
     _id: new mongoose.Types.ObjectId(),
     badge: 54623,
     name: 'Camper bot',
     age: 4,
-    favoriteFoods: ['oil','vegetables'],
+    favoriteFoods: ['oil', 'vegetables'],
     living: false,
     role: 'working robot'
   },
@@ -130,7 +130,7 @@ const arr =[
     badge: 87423,
     name: 'Camper noob',
     age: 20,
-    favoriteFoods: ['sandwich','macaroni'],
+    favoriteFoods: ['sandwich', 'macaroni'],
     living: true,
     role: 'frontend developer'
   },
@@ -139,13 +139,13 @@ const arr =[
     badge: 94276,
     name: 'Camper awesome',
     age: 25,
-    favoriteFoods: ['chicken','onion'],
+    favoriteFoods: ['chicken', 'onion'],
     living: true,
     role: 'fullstack developer'
   }
 ];
 const createManyPeople = function (arrayOfPeople, done) {
-  Person.create(arrayOfPeople,(err,data)=> err ? done(err): done(null,data));
+  Person.create(arrayOfPeople, (err, data) => err ? done(err) : done(null, data));
 
 };
 
@@ -161,7 +161,7 @@ const createManyPeople = function (arrayOfPeople, done) {
 // Use the function argument `personName` as search key.
 
 const findPeopleByName = function (personName, done) {
-  Person.find({'name':personName},(err,data)=> err? done(err): done(data));
+  Person.find({ 'name': personName }, (err, data) => err ? done(err) : done(null, data));
 
 };
 
@@ -174,9 +174,8 @@ const findPeopleByName = function (personName, done) {
 // using `Model.findOne() -> Person`. Use the function
 // argument `food` as search key
 
-var findOneByFood = function (food, done) {
-
-  done(null/*, data*/);
+const findOneByFood = function (food, done) {
+  Person.findOne({ 'favoriteFood': food }, (err, data) => err ? done(err) : done(null, data));
 
 };
 
