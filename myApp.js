@@ -175,7 +175,7 @@ const findPeopleByName = function (personName, done) {
 // argument `food` as search key
 
 const findOneByFood = function (food, done) {
-  Person.findOne({ 'favoriteFood': food }, (err, data) => err ? done(err) : done(null, data));
+  Person.findOne({ 'favoriteFoods': food }, (err, data) => err ? done(err) : done(null, data));
 
 };
 
@@ -188,9 +188,8 @@ const findOneByFood = function (food, done) {
 // using `Model.findById() -> Person`.
 // Use the function argument 'personId' as search key.
 
-var findPersonById = function (personId, done) {
-
-  done(null/*, data*/);
+const findPersonById = function (personId, done) {
+  Person.findById(personId, (err, data) => err ? done(err) : done(null, data));
 
 };
 
